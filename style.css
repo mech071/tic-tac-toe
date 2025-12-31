@@ -127,10 +127,45 @@ body {
 }
 
 @media (max-width: 480px) {
-    .header { font-size: 16vw; }
-    .box { font-size: 9vw; }
-    .status { font-size: 7vw; }
-    .input { gap: 3vw; }
+    body {
+        padding: 8px;
+        box-sizing: border-box;
+    }
+    .header { 
+        font-size: 18vw;
+        margin: 0.2rem 0;
+        line-height: 1;
+    }
+    .main { 
+        gap: 25px; 
+    }
+    .container { 
+        width: 92vmin;
+        max-width: none; 
+    }
+    .box { 
+        font-size: 14vw;
+        border-width: 2px;
+    }
+    .input { 
+        gap: 30px;
+        width: 95%;
+    }
+    .input1 { 
+        padding: 18px;
+        font-size: 8vw;
+        max-width: none;
+    }
+    .btn, .reset, .new { 
+        width: 100%;
+        max-width: 160px;
+        height: 14vw;
+        min-height: 45px;
+        font-size: 8vw;
+    }
+    .status { 
+        font-size: 10vw; 
+    }
 }
 
 .hidden {
