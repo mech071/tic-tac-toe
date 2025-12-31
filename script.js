@@ -130,6 +130,7 @@ start.addEventListener("click", (e) => {
     const b = inputs[1].value;
     const p1 = Player(a, "X");
     const p2 = Player(b, "O");
+    status.textContent=`${a}' turn`;
     game = Game(p1, p2);
     form.classList.add("hidden");
     container.classList.remove("hidden");
@@ -138,11 +139,13 @@ start.addEventListener("click", (e) => {
 
 const boxes = document.querySelectorAll(".box");
 const status = document.querySelector(".status");
+status.classList.remove("hidden");
 boxes.forEach((box, index) => {
     box.addEventListener("click", (e) => {
         e.preventDefault();
         if (!game) return;
 
+        const player = game.getCurrentPlayer();
         const result = game.playTurn(index);
         const board = game.getBoard();
 
@@ -150,18 +153,26 @@ boxes.forEach((box, index) => {
             b.textContent = board[i];
         });
 
-        if (result.startsWith("WIN")) {
-            status.textContent = result.replace("WIN:", "") + " wins!";
-            status.classList.remove("hidden");
+        if (result === "CONTINUE") {
+            const name = game.getCurrentPlayer().getName();
+
+            if (name.endsWith('s')) {
+                status.textContent = `${name}' turn`;
+            } else {
+                status.textContent = `${name}'s turn`;
+            }
+        }
+        else if (result.startsWith("WIN")) {
+            status.textContent = `${player.getName()} wins!`;
             newBtn.classList.remove("hidden");
-        } 
+        }
         else if (result === "DRAW") {
             status.textContent = "It's a draw!";
-            status.classList.remove("hidden");
             newBtn.classList.remove("hidden");
         }
     });
 });
+
 
 reset.addEventListener("click", (e) => {
     e.preventDefault();
