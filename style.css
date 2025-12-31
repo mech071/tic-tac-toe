@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
+
+* {
+    margin: 0;
+    background-color: rgb(228, 255, 254);
+}
+
+.header {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 8em;
+    color: rgb(39, 73, 92);
+    font-weight: 400;
+    font-family: "Amatic SC";
+}
+
+.main {
+    font-family: "Finger Paint";
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    margin-top: 50px;
+    height: 50vh;
+    width: 30vw;
+    aspect-ratio: 1/1;
+    border: 1.5px solid rgb(48, 142, 192);
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.box {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(74, 131, 196);
+    font-size: 40px;
+    cursor: pointer;
+    color:rgb(37, 138, 192);
+}
+
+.box:hover {
+    background-color: rgb(234, 235, 178);
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    gap: 30px;
+    color: rgb(1, 42, 88);
+    font-weight: 400;
+}
+
+.input1 {
+    padding: 3px;
+    color: rgb(1, 42, 88);
+    font-weight: 400;
+}
+
+.btn {
+    font-family: "Amatic SC";
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    color: rgb(1, 42, 88);
+    font-weight: 800;
+    font-size: 20px;
+    background-color: rgb(187, 243, 243);
+}
+
+.btn:hover,.reset:hover, .new:hover {
+    background-color: rgb(126, 218, 218);
+}
+
+.reset,.new {
+    font-family: "Amatic SC";
+    font-size: 20px;
+    margin-top: 10px;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    color: #000000;
+    border: 1px solid rgb(51, 157, 206);
+    font-weight: 800;
+    background-color: rgb(187, 243, 243);
+}
+
+.status {
+    font-family: "Amatic SC";
+    display: flex;
+    align-self: center;
+    margin-top: 10px;
+    font-size: 28px;
+    font-weight: 800;
+    text-align: center;
+    color: rgb(1, 42, 88);
+}
+@media only screen and (max-width: 768px) {
+
+    .header {
+        font-size: 5em;
+        margin-top: 10px;
+    }
+    .container {
+        width: 90vw;
+        height: auto;       
+        margin-top: 20px;
+    }
+    .box {
+        font-size: 32px;
+    }
+    .input {
+        margin-top: 30px;
+        gap: 20px;
+    }
+    .btn,
+    .reset,
+    .new {
+        width: 120px;
+        height: 36px;
+        font-size: 20px;
+    }
+    .status {
+        font-size: 18px;
+        margin-top: 5px;
+    }
+}
+
+.hidden {
+    display: none;
+} 
