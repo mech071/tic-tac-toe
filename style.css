@@ -168,8 +168,8 @@ body {
         width: 95%;
     }
     .input1 { 
-        padding: 18px;
-        font-size: 8vw;
+        padding: 10px;
+        font-size: 20px;
         max-width: none;
     }
     .btn, .reset, .new { 
