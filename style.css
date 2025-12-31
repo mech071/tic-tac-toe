@@ -35,7 +35,7 @@ body {
 
 .container {
     width: 70vmin;
-    max-width: 300px;
+    max-width: 400px;
     aspect-ratio: 1 / 1;
     border: 1.5px solid rgb(48, 142, 192);
     box-sizing: border-box;
@@ -127,24 +127,10 @@ body {
 }
 
 @media (max-width: 480px) {
-    .header {
-        font-size: 6em;
-    }
-
-    .box {
-        font-size: 32px;
-    }
-
-    .status {
-        font-size: 30px;
-    }
-
-    .input {
-        gap: 24px;
-    }
-    .btn,.reset,.new {
-        font-size: 22px;
-    }
+    .header { font-size: 16vw; }
+    .box { font-size: 9vw; }
+    .status { font-size: 7vw; }
+    .input { gap: 3vw; }
 }
 
 .hidden {
