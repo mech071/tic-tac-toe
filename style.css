@@ -1,38 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
 
-
 * {
     margin: 0;
 }
 
 body {
     background-color: rgb(228, 255, 254);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .header {
     text-align: center;
-    margin-top: 0;
-    font-size: 8em;
+    margin: 1rem 0;
+    font-size: 10vw;
     color: rgb(39, 73, 92);
     font-weight: 400;
     font-family: "Amatic SC";
+    line-height: 1;
 }
 
 .main {
-    min-height: calc(100vh - 135px);
     font-family: "Finger Paint";
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap:24px;
+    gap: 24px;
+    flex: 1;
 }
 
 .container {
-    width: 90vw;
+    width: 70vmin;
+    max-width: 300px;
     aspect-ratio: 1 / 1;
-    max-width: 360px;
     border: 1.5px solid rgb(48, 142, 192);
     box-sizing: border-box;
     display: grid;
@@ -47,8 +51,9 @@ body {
     align-items: center;
     border: 1px solid rgb(74, 131, 196);
     font-size: 40px;
+    font-weight: 600;
     cursor: pointer;
-    color:rgb(37, 138, 192);
+    color: rgb(37, 138, 192);
 }
 
 .box:hover {
@@ -60,37 +65,50 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
     color: rgb(1, 42, 88);
     font-weight: 400;
 }
 
 .input1 {
-    padding: 3px;
+    width: 100%;
+    max-width: 250px;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 20px;
     color: rgb(1, 42, 88);
     font-weight: 400;
 }
 
 .btn {
     font-family: "Amatic SC";
-    width: 100px;
-    height: 30px;
+    width: 22vw;
+    min-width: 90px;
+    max-width: 140px;
+    height: 50px;
+    min-height: 28px;
     cursor: pointer;
     color: rgb(1, 42, 88);
     font-weight: 800;
-    font-size: 20px;
+    font-size: 30px;
     background-color: rgb(187, 243, 243);
 }
 
-.btn:hover,.reset:hover, .new:hover {
+.btn:hover,
+.reset:hover,
+.new:hover {
     background-color: rgb(126, 218, 218);
 }
 
-.reset,.new {
+.reset,
+.new {
     font-family: "Amatic SC";
-    font-size: 20px;
-    width: 100px;
-    height: 30px;
+    font-size: 30px;
+    width: 22vw;
+    min-width: 90px;
+    max-width: 140px;
+    height: 50px;
+    min-height: 28px;
     cursor: pointer;
     color: #000000;
     border: 1px solid rgb(51, 157, 206);
@@ -102,39 +120,33 @@ body {
     font-family: "Amatic SC";
     display: flex;
     align-self: center;
-    font-size: 28px;
+    font-size: 36px;
     font-weight: 800;
     text-align: center;
     color: rgb(1, 42, 88);
 }
-@media only screen and (max-width: 768px) {
 
+@media (max-width: 480px) {
     .header {
-        font-size: 5em;
+        font-size: 6em;
     }
-    .container {
-        width: 90vw;
-        height: auto;       
-    }
+
     .box {
         font-size: 32px;
     }
-    .input {
-        font-size: 20px;
-        gap: 20px;
-    }
-    .btn,
-    .reset,
-    .new {
-        width: 200px;
-        height: 60px;
-        font-size: 20px;
-    }
+
     .status {
-        font-size: 20px;
+        font-size: 30px;
+    }
+
+    .input {
+        gap: 24px;
+    }
+    .btn,.reset,.new {
+        font-size: 22px;
     }
 }
 
 .hidden {
     display: none;
-} 
+}
