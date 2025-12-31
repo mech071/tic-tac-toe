@@ -124,21 +124,28 @@ const container = document.querySelector(".container");
 const form = document.querySelector(".input");
 const reset = document.querySelector(".reset");
 const newBtn = document.querySelector(".new");
+const status = document.querySelector(".status");
 start.addEventListener("click", (e) => {
     e.preventDefault();
     const a = inputs[0].value;
     const b = inputs[1].value;
     const p1 = Player(a, "X");
     const p2 = Player(b, "O");
-    status.textContent=`${a}' turn`;
+    status.textContent = `${a}' turn`;
     game = Game(p1, p2);
     form.classList.add("hidden");
     container.classList.remove("hidden");
+    container.classList.remove("animate");
+    void container.offsetWidth;
+    container.classList.add("animate");
+    status.classList.add("animate");
+    container.style.animationDelay = "0.1s";
+    status.style.animationDelay = "0.3s";
     reset.classList.remove("hidden");
+    reset.style.animationDelay = "0.2s";
 });
 
 const boxes = document.querySelectorAll(".box");
-const status = document.querySelector(".status");
 status.classList.remove("hidden");
 boxes.forEach((box, index) => {
     box.addEventListener("click", (e) => {
@@ -163,10 +170,12 @@ boxes.forEach((box, index) => {
             }
         }
         else if (result.startsWith("WIN")) {
+            status.classList.remove("hidden");
             status.textContent = `${player.getName()} wins!`;
             newBtn.classList.remove("hidden");
         }
         else if (result === "DRAW") {
+            status.classList.remove("hidden");
             status.textContent = "It's a draw!";
             newBtn.classList.remove("hidden");
         }

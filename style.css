@@ -100,6 +100,22 @@ body {
     background-color: rgb(126, 218, 218);
 }
 
+.animate {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header.animate { animation-delay: 0.3s; }
+.main.animate { animation-delay: 0.9s; }
+
 .reset,
 .new {
     font-family: "Amatic SC";
