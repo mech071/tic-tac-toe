@@ -57,10 +57,10 @@ body {
 }
 
 .box:hover {
-    background-color: rgb(234, 235, 178);
+    background-color: rgb(186, 255, 255);
 }
 
-.input {
+.input,.comp-input {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -70,7 +70,7 @@ body {
     font-weight: 400;
 }
 
-.input1 {
+.input1,.input2 {
     width: 100%;
     max-width: 250px;
     box-sizing: border-box;
@@ -96,7 +96,9 @@ body {
 
 .btn:hover,
 .reset:hover,
-.new:hover {
+.new:hover,
+.player:hover,
+.comp:hover {
     background-color: rgb(126, 218, 218);
 }
 
@@ -113,8 +115,13 @@ body {
     }
 }
 
-.header.animate { animation-delay: 0.3s; }
-.main.animate { animation-delay: 0.9s; }
+.header.animate {
+    animation-delay: 0.3s;
+}
+
+.main.animate {
+    animation-delay: 0.9s;
+}
 
 .reset,
 .new {
@@ -142,45 +149,70 @@ body {
     color: rgb(1, 42, 88);
 }
 
+.player,
+.comp {
+    font-family: "Amatic SC";
+    width: 22vw;
+    min-width: 90px;
+    max-width: 200px;
+    height: 70px;
+    min-height: 28px;
+    cursor: pointer;
+    color: rgb(1, 42, 88);
+    font-weight: 800;
+    font-size: 26px;
+    background-color: rgb(187, 243, 243);
+}
+
 @media (max-width: 800px) {
     body {
         padding: 8px;
         box-sizing: border-box;
     }
-    .header { 
+
+    .header {
         font-size: 18vw;
         margin: 0.2rem 0;
         line-height: 1;
     }
-    .main { 
-        gap: 25px; 
+
+    .main {
+        gap: 25px;
     }
-    .container { 
+
+    .container {
         width: 92vmin;
-        max-width: none; 
+        max-width: none;
     }
-    .box { 
+
+    .box {
         font-size: 14vw;
         border-width: 2px;
     }
-    .input { 
+
+    .input,.comp-input {
         gap: 30px;
         width: 95%;
     }
-    .input1 { 
+
+    .input1,.input2 {
         padding: 10px;
         font-size: 20px;
         max-width: none;
     }
-    .btn, .reset, .new { 
+
+    .btn,
+    .reset,
+    .new {
         width: 100%;
         max-width: 160px;
         height: 14vw;
         min-height: 45px;
         font-size: 8vw;
     }
-    .status { 
-        font-size: 10vw; 
+
+    .status {
+        font-size: 10vw;
     }
 }
 

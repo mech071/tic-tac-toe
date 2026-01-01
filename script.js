@@ -117,23 +117,51 @@ const Game = (a, b) => {
         resetGame
     }
 }
+
+const playa = document.querySelector(".player");
+const comp = document.querySelector(".comp")
+playa.addEventListener("click", (e) => {
+    e.preventDefault();
+    form.classList.remove("hidden");
+    playa.classList.add("hidden");
+    comp.classList.add("hidden");
+})
+
 let game;
-const start = document.querySelector(".btn");
+let name = "";
+const start = document.querySelectorAll(".btn");
 const inputs = document.querySelectorAll(".input1");
 const container = document.querySelector(".container");
 const form = document.querySelector(".input");
+const form1 = document.querySelector(".comp-input");
+const input = document.querySelector(".input2");
 const reset = document.querySelector(".reset");
 const newBtn = document.querySelector(".new");
 const status = document.querySelector(".status");
-start.addEventListener("click", (e) => {
+
+comp.addEventListener("click", (e) => {
+    e.preventDefault();
+    form1.classList.remove("hidden");
+    playa.classList.add("hidden");
+    comp.classList.add("hidden");
+})
+
+
+start[0].addEventListener("click", (e) => {
     e.preventDefault();
     const a = inputs[0].value;
     const b = inputs[1].value;
+    name = a;
     const p1 = Player(a, "X");
     const p2 = Player(b, "O");
-    status.textContent = `${a}' turn`;
+    if (name.endsWith('s')) {
+        status.textContent = `${name}' turn`;
+    } else {
+        status.textContent = `${name}'s turn`;
+    }
     game = Game(p1, p2);
     form.classList.add("hidden");
+    form1.classList.add("hidden");
     container.classList.remove("hidden");
     container.classList.remove("animate");
     void container.offsetWidth;
@@ -143,10 +171,31 @@ start.addEventListener("click", (e) => {
     status.style.animationDelay = "0.3s";
     reset.classList.remove("hidden");
     reset.style.animationDelay = "0.2s";
+    status.classList.remove("hidden");
+});
+let flag = true;
+start[1].addEventListener("click", (e) => {
+    e.preventDefault();
+    const a = input.value;
+    const p1 = Player(a, "X");
+    const p2 = Player("Com.p@uter1226333", "O");
+    status.textContent = `${a}' turn`;
+    game = Game(p1, p2);
+    form.classList.add("hidden");
+    form1.classList.add("hidden");
+    container.classList.remove("hidden");
+    container.classList.remove("animate");
+    void container.offsetWidth;
+    container.classList.add("animate");
+    status.classList.add("animate");
+    container.style.animationDelay = "0.1s";
+    status.style.animationDelay = "0.3s";
+    reset.classList.remove("hidden");
+    reset.style.animationDelay = "0.2s";
+    flag = false;
 });
 
 const boxes = document.querySelectorAll(".box");
-status.classList.remove("hidden");
 boxes.forEach((box, index) => {
     box.addEventListener("click", (e) => {
         e.preventDefault();
@@ -162,11 +211,38 @@ boxes.forEach((box, index) => {
 
         if (result === "CONTINUE") {
             const name = game.getCurrentPlayer().getName();
-
-            if (name.endsWith('s')) {
-                status.textContent = `${name}' turn`;
-            } else {
-                status.textContent = `${name}'s turn`;
+            if (name === "Com.p@uter1226333") {
+                const empty = [];
+                for (let i = 0; i < 9; i++) {
+                    if (board[i] === " ") empty.push(i);
+                }
+                if (empty.length === 0) return;
+                const move = empty[Math.floor(Math.random() * empty.length)];
+                const compResult = game.playTurn(move);
+                const newBoard = game.getBoard();
+                boxes.forEach((b, i) => {
+                    b.textContent = newBoard[i];
+                });
+                if (compResult.startsWith("WIN")) {
+                    status.classList.remove("hidden");
+                    status.textContent = "Computer wins!";
+                    newBtn.classList.remove("hidden");
+                    return;
+                }
+                if (compResult === "DRAW") {
+                    status.classList.remove("hidden");
+                    status.textContent = "It's a draw!";
+                    newBtn.classList.remove("hidden");
+                    return;
+                }
+            }
+            else {
+                const name = game.getCurrentPlayer().getName();
+                if (name.endsWith('s')) {
+                    status.textContent = `${name}' turn`;
+                } else {
+                    status.textContent = `${name}'s turn`;
+                }
             }
         }
         else if (result.startsWith("WIN")) {
@@ -188,18 +264,24 @@ reset.addEventListener("click", (e) => {
     if (!game) return;
     game.resetGame();
     boxes.forEach(box => box.textContent = "");
-    status.textContent = "";
-    status.classList.add("hidden");
+    if (name.endsWith('s') && flag) {
+        status.textContent = `${name}' turn`;
+    } else if (!name.endsWith('s')) {
+        status.textContent = `${name}'s turn`;
+    }
     newBtn.classList.add("hidden");
 });
 
 newBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    boxes.forEach(box => box.textContent = "");
-    form.classList.remove("hidden");
     newBtn.classList.add("hidden");
     status.classList.add("hidden");
     container.classList.add("hidden");
     reset.classList.add("hidden");
+    boxes.forEach(box => box.textContent = "");
     game.resetGame();
+    if (flag)
+        form.classList.remove("hidden");
+    else
+        form1.classList.remove("hidden");
 })
