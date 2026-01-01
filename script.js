@@ -194,7 +194,7 @@ start[1].addEventListener("click", (e) => {
     reset.style.animationDelay = "0.2s";
     flag = false;
 });
-
+let flag1=true;
 const boxes = document.querySelectorAll(".box");
 boxes.forEach((box, index) => {
     box.addEventListener("click", (e) => {
@@ -227,12 +227,14 @@ boxes.forEach((box, index) => {
                     status.classList.remove("hidden");
                     status.textContent = "Computer wins!";
                     newBtn.classList.remove("hidden");
+                    flag1=false;
                     return;
                 }
                 if (compResult === "DRAW") {
                     status.classList.remove("hidden");
                     status.textContent = "It's a draw!";
                     newBtn.classList.remove("hidden");
+                    flag1=false;
                     return;
                 }
             }
@@ -249,11 +251,13 @@ boxes.forEach((box, index) => {
             status.classList.remove("hidden");
             status.textContent = `${player.getName()} wins!`;
             newBtn.classList.remove("hidden");
+            flag1=false;
         }
         else if (result === "DRAW") {
             status.classList.remove("hidden");
             status.textContent = "It's a draw!";
             newBtn.classList.remove("hidden");
+            flag1=false;
         }
     });
 });
@@ -264,6 +268,7 @@ reset.addEventListener("click", (e) => {
     if (!game) return;
     game.resetGame();
     boxes.forEach(box => box.textContent = "");
+    if(!flag1 && !flag) status.classList.add("hidden");
     if (name.endsWith('s') && flag) {
         status.textContent = `${name}' turn`;
     } else if (!name.endsWith('s')) {
