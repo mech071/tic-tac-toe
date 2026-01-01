@@ -154,7 +154,7 @@ body {
 .player,
 .comp {
     font-family: "Amatic SC";
-    width: 22vw;
+    width: 30vw;
     min-width: 90px;
     max-width: 200px;
     height: 70px;
@@ -207,7 +207,9 @@ body {
 
     .player,
     .comp{
-        font-size: 20px;
+        width: 48vw;
+        font-size: 24px;
+        max-width: none;
     }
     .btn,
     .reset,
