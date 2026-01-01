@@ -60,7 +60,8 @@ body {
     background-color: rgb(186, 255, 255);
 }
 
-.input,.comp-input {
+.input,
+.comp-input {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -70,7 +71,8 @@ body {
     font-weight: 400;
 }
 
-.input1,.input2 {
+.input1,
+.input2 {
     width: 100%;
     max-width: 250px;
     box-sizing: border-box;
@@ -190,30 +192,37 @@ body {
         border-width: 2px;
     }
 
-    .input,.comp-input {
+    .input,
+    .comp-input {
         gap: 30px;
         width: 95%;
     }
 
-    .input1,.input2 {
+    .input1,
+    .input2 {
         padding: 10px;
         font-size: 20px;
         max-width: none;
     }
 
+    .player,
+    .comp{
+        font-size: 20px;
+    }
     .btn,
     .reset,
-    .new {
-        width: 100%;
-        max-width: 160px;
-        height: 14vw;
-        min-height: 45px;
-        font-size: 8vw;
-    }
+    .new
+    {
+    width: 100%;
+    max-width: 160px;
+    height: 14vw;
+    min-height: 45px;
+    font-size: 8vw;
+}
 
-    .status {
-        font-size: 10vw;
-    }
+.status {
+    font-size: 10vw;
+}
 }
 
 .hidden {
