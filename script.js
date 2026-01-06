@@ -267,11 +267,13 @@ start[1].addEventListener("click", (e) => {
     flag = false;
 });
 let flag1 = true;
+let flag3=false;
 const boxes = document.querySelectorAll(".box");
 boxes.forEach((box, index) => {
     box.addEventListener("click", (e) => {
         e.preventDefault();
         if (!game) return;
+        if(flag3) return;
         const player = game.getCurrentPlayer();
         const result = game.playTurn(index);
         const board = game.getBoard();
@@ -282,80 +284,84 @@ boxes.forEach((box, index) => {
         if (result === "CONTINUE") {
             const name = game.getCurrentPlayer().getName();
             if (name === "Com.p@uter1226333") {
-                if (difficulty=="Easy") {
-                    const empty = [];
-                    for (let i = 0; i < 9; i++) {
-                        if (board[i] === " ") empty.push(i);
+                flag3=true;
+                setTimeout(() => {
+                    if (difficulty == "Easy") {
+                        const empty = [];
+                        for (let i = 0; i < 9; i++) {
+                            if (board[i] === " ") empty.push(i);
+                        }
+                        if (empty.length === 0) return;
+                        const move = empty[Math.floor(Math.random() * empty.length)];
+                        const compResult = game.playTurn(move);
+                        const newBoard = game.getBoard();
+                        boxes.forEach((b, i) => {
+                            b.textContent = newBoard[i];
+                        });
+                        if (compResult.startsWith("WIN")) {
+                            status.classList.remove("hidden");
+                            status.textContent = "Computer wins!";
+                            newBtn.classList.remove("hidden");
+                            flag1 = false;
+                            return;
+                        }
+                        if (compResult === "DRAW") {
+                            status.classList.remove("hidden");
+                            status.textContent = "It's a draw!";
+                            newBtn.classList.remove("hidden");
+                            flag1 = false;
+                            return;
+                        }
                     }
-                    if (empty.length === 0) return;
-                    const move = empty[Math.floor(Math.random() * empty.length)];
-                    const compResult = game.playTurn(move);
-                    const newBoard = game.getBoard();
-                    boxes.forEach((b, i) => {
-                        b.textContent = newBoard[i];
-                    });
-                    if (compResult.startsWith("WIN")) {
-                        status.classList.remove("hidden");
-                        status.textContent = "Computer wins!";
-                        newBtn.classList.remove("hidden");
-                        flag1 = false;
-                        return;
+                    else if (difficulty == "Normal") {
+                        const empty = [];
+                        for (let i = 0; i < 9; i++) {
+                            if (board[i] === " ") empty.push(i);
+                        }
+                        if (empty.length === 0) return;
+                        let move;
+                        if (Math.round(Math.random()) == 1) move = getBestMove(board);
+                        else move = empty[Math.floor(Math.random() * empty.length)];
+                        const compResult = game.playTurn(move);
+                        const newBoard = game.getBoard();
+                        boxes.forEach((b, i) => b.textContent = newBoard[i]);
+                        if (compResult.startsWith("WIN")) {
+                            status.classList.remove("hidden");
+                            status.textContent = "Computer wins!";
+                            newBtn.classList.remove("hidden");
+                            flag1 = false;
+                            return;
+                        }
+                        if (compResult === "DRAW") {
+                            status.classList.remove("hidden");
+                            status.textContent = "It's a draw!";
+                            newBtn.classList.remove("hidden");
+                            flag1 = false;
+                            return;
+                        }
                     }
-                    if (compResult === "DRAW") {
-                        status.classList.remove("hidden");
-                        status.textContent = "It's a draw!";
-                        newBtn.classList.remove("hidden");
-                        flag1 = false;
-                        return;
+                    else if (difficulty == "Hard") {
+                        const move = getBestMove(board);
+                        const compResult = game.playTurn(move);
+                        const newBoard = game.getBoard();
+                        boxes.forEach((b, i) => b.textContent = newBoard[i]);
+                        if (compResult.startsWith("WIN")) {
+                            status.classList.remove("hidden");
+                            status.textContent = "Computer wins!";
+                            newBtn.classList.remove("hidden");
+                            flag1 = false;
+                            return;
+                        }
+                        if (compResult === "DRAW") {
+                            status.classList.remove("hidden");
+                            status.textContent = "It's a draw!";
+                            newBtn.classList.remove("hidden");
+                            flag1 = false;
+                            return;
+                        }
                     }
-                }
-                else if (difficulty=="Normal") {
-                    const empty = [];
-                    for (let i = 0; i < 9; i++) {
-                        if (board[i] === " ") empty.push(i);
-                    }
-                    if (empty.length === 0) return;
-                    let move;
-                    if (Math.round(Math.random()) == 1) move = getBestMove(board);
-                    else move = empty[Math.floor(Math.random() * empty.length)];
-                    const compResult = game.playTurn(move);
-                    const newBoard = game.getBoard();
-                    boxes.forEach((b, i) => b.textContent = newBoard[i]);
-                    if (compResult.startsWith("WIN")) {
-                        status.classList.remove("hidden");
-                        status.textContent = "Computer wins!";
-                        newBtn.classList.remove("hidden");
-                        flag1 = false;
-                        return;
-                    }
-                    if (compResult === "DRAW") {
-                        status.classList.remove("hidden");
-                        status.textContent = "It's a draw!";
-                        newBtn.classList.remove("hidden");
-                        flag1 = false;
-                        return;
-                    }
-                }
-                else if (difficulty=="Hard") {
-                    const move = getBestMove(board);
-                    const compResult = game.playTurn(move);
-                    const newBoard = game.getBoard();
-                    boxes.forEach((b, i) => b.textContent = newBoard[i]);
-                    if (compResult.startsWith("WIN")) {
-                        status.classList.remove("hidden");
-                        status.textContent = "Computer wins!";
-                        newBtn.classList.remove("hidden");
-                        flag1 = false;
-                        return;
-                    }
-                    if (compResult === "DRAW") {
-                        status.classList.remove("hidden");
-                        status.textContent = "It's a draw!";
-                        newBtn.classList.remove("hidden");
-                        flag1 = false;
-                        return;
-                    }
-                }
+                    flag3=false;
+                },500)
             }
             else {
                 const name = game.getCurrentPlayer().getName();
